@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { ClerkProvider, RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs'
+import { Separator } from "@/components/ui/separator";
+import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/providers/ThemeProvider";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,12 +30,35 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <ClerkProvider>
+      <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(geistSans.className, "dark")}
+        style={{
+          colorScheme: "dark"
+        }}
       >
-        {children}
+        <header>
+            <SignedOut>
+            <RedirectToSignIn />
+            </SignedOut>
+            <SignedIn>
+            </SignedIn>
+        </header>
+        <ThemeProvider>
+          <div className="flex min-h-screen w-full flex-col items-center dark:bg-black">
+            <Navbar />
+            <Separator />
+            <main className="flex flex-grow w-full  dark:bg-neutral-950">
+              {children}
+              <Toaster />
+            </main>
+          </div>
+        </ThemeProvider>
+        
       </body>
     </html>
+    </ClerkProvider>
+    
   );
 }
