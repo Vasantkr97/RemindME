@@ -47,7 +47,7 @@ const CreateCollectionSheet = ({ open, onOpenChange }: Props) => {
                 description: "Something went wrong. Please try again later",
                 variant: "destructive",
             })
-            console.log(e)
+            
         }
     }
 

@@ -41,7 +41,7 @@ const CollectionCard = ({ collection }: Props) => {
         description: "Collection deleted Successfully",
       });
       router.refresh();
-    } catch (e) {
+    } catch (e: any) {
       toast({
         title: "Error",
         description: "Cannot delete collection",
