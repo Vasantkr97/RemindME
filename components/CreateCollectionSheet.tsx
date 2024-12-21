@@ -41,7 +41,7 @@ const CreateCollectionSheet = ({ open, onOpenChange }: Props) => {
                 title: "Success",
                 description: "Collection created succesfully!",
             })
-        } catch(e: any) {
+        } catch{
             toast({
                 title: "Error",
                 description: "Something went wrong. Please try again later",

@@ -47,7 +47,7 @@ const CreateTaskDialog = ({ open, collection, setOpen }: Props) => {
             });
             openChangeWrapper(false)
             router.refresh();
-        } catch(e: any) {
+        } catch{
             toast({
                 title: "Error",
                 description: "Cannot create task",
